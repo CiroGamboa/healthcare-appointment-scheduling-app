@@ -52,7 +52,31 @@ function getSlotById(slotId) {
     return slots.find(slot => slot.id === slotId);
   }
   
+
+  function reserveSlot(slotId, patient) {
+    const slots = getSlotsFromDatabase();
+    const slot = slots.find(slot => slot.id === slotId);
+    console.log(slotId)
+    console.log(patient);
+    if (slot && !slot.isBooked) {
+      slot.isBooked = true;
+      const cita = { slotId, patient };
+  
+      const citas = getCitasFromDatabase();
+      citas.push(cita);
+      updateCitasInDatabase(citas);
+      updateSlotsInDatabase(slots);
+      return true;
+    }
+  }
+
+  function updateSlotsInDatabase(slots) {
+    const data = { slots, citas: getCitasFromDatabase() };
+    fs.writeFileSync('db.json', JSON.stringify(data, null, 2), 'utf8');
+  }
+
 module.exports = {
+  reserveSlot,
     getSlotById,
   getSlotsFromDatabase,
   getPatientById,

@@ -28,7 +28,7 @@
       "id": "5",
       "date": "2023-05-20",
       "time": "01:00 PM",
-      "isBooked": false
+      "isBooked": true
     },
     {
       "id": "6",
@@ -94,7 +94,7 @@
       "id": "16",
       "date": "2023-05-23",
       "time": "09:00 AM",
-      "isBooked": false
+      "isBooked": true
     },
     {
       "id": "17",
@@ -111,48 +111,12 @@
   ],
   "citas": [
     {
-      "slotId": "15",
-      "patient": {
-        "type": "Premium",
-        "name": "Paul McCartney",
-        "id": "1023",
-        "age": "81"
-      }
-    },
-    {
-      "slotId": "3",
-      "patient": {
-        "type": "Premium",
-        "name": "Paul McCartney",
-        "id": "1023",
-        "age": "81"
-      }
-    },
-    {
-      "slotId": "18",
+      "slotId": "16",
       "patient": {
         "type": "Normal",
-        "name": "John Lennon",
-        "id": "1940",
-        "age": "40"
-      }
-    },
-    {
-      "slotId": "17",
-      "patient": {
-        "type": "Normal",
-        "name": "Daniel Perez",
-        "id": "100",
-        "age": "20"
-      }
-    },
-    {
-      "slotId": "12",
-      "patient": {
-        "type": "Premium",
-        "name": "Javier",
-        "id": "200",
-        "age": "70"
+        "name": "Jairo",
+        "id": "12",
+        "age": "89"
       }
     }
   ]

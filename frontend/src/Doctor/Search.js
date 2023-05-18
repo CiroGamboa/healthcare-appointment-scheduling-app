@@ -31,6 +31,16 @@ const Search = () => {
     }
   };
 
+  const cancelAppointment = async appointmentId => {
+    try {
+      await Axios.post("http://localhost:5000/cancel-appointment", { appointmentId });
+      fetchAppointments();
+      console.log("Appointment canceled");
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <div>
       <Row className="mb-3">
@@ -79,6 +89,9 @@ const Search = () => {
                 <th scope="row">{appointment.patientAge}</th>
                 <th scope="row">{appointment.patientId}</th>
                 <th scope="row">{appointment.patientType}</th>
+                <td>
+                  <button onClick={() => cancelAppointment(appointment.id)}>Cancelar</button>
+                </td>
                 <hr />
               </div>
             ))}

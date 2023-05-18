@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const { getSlotById, assignAppointment, getCitasFromDatabase, getPatientById, getSlotsFromDatabase, updateCitasInDatabase } = require('./models');
+const { reserveSlot, getSlotById, assignAppointment, getCitasFromDatabase, getPatientById, getSlotsFromDatabase, updateCitasInDatabase } = require('./models');
 
 const app = express();
 const port = 5000;
@@ -78,8 +78,6 @@ app.get('/citas', (req, res) => {
 app.get('/patient-appointments/:patientId', (req, res) => {
   console.log("Received");
   const { patientId } = req.params;
-  console.log("ID");
-  console.log(patientId);
   const citas = getCitasFromDatabase().filter(cita => cita.patient.id == patientId);
   console.log(getCitasFromDatabase())
 
@@ -100,6 +98,28 @@ app.get('/patient-appointments/:patientId', (req, res) => {
   console.log(citasConInformacion);
 
   res.json(citasConInformacion);
+});
+
+// Endpoint para cancelar una cita
+app.post('/cancel-appointment', (req, res) => {
+  const { appointmentId } = req.body;
+  const citas = getCitasFromDatabase();
+  const updatedCitas = citas.filter(cita => cita.id !== appointmentId);
+  updateCitasInDatabase(updatedCitas);
+  res.json({ message: 'Appointment canceled successfully' });
+});
+
+app.post('/reserve-basic', (req, res) => {
+  const { patient } = req.body;
+  const result = assignAppointment(patient);
+
+  if (result.success) {
+    console.log("Appointment assigned")
+    res.json({ message: 'Appointment assigned successfully', slot: result.slot });
+  } else {
+    console.log("Appointment not assigned")
+    res.status(400).json({ message: result.message });
+  }
 });
 
 // ...
