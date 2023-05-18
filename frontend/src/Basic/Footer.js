@@ -10,12 +10,12 @@ import { Link } from "react-router-dom";
           style={{maxWidth:"100%",margin:"auto"}}>
          
          <div className="col-12 col-md-6 w-100">
-         <h4 className="white-text">Contact Us</h4>
+         <h4 className="white-text">Contactanos</h4>
                      <p className="grey-text">
-                         ABC 5078, Mumbai, India
+                        UPB Bucaramanga
                      </p>
                      <p className="grey-text">
-                        +919307531964
+                        +57 320 4441469
                      </p>
            
          </div>

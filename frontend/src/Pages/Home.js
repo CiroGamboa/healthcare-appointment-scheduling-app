@@ -11,7 +11,7 @@ const Home = () => {
       <Navbar />
       <Jumbo />
       <About />
-      <LoginButton />
+     
       <Footer />
     </div>
   );
