@@ -8,10 +8,11 @@ function getSlotsFromDatabase() {
 
 // Función para obtener un paciente por su ID
 function getPatientById(patientId) {
-  const citas = getCitasFromDatabase();
-  return citas.find(cita => cita.patient.id === patientId).patient;
-}
-
+    const citas = getCitasFromDatabase();
+    const cita = citas.find(cita => cita.patient && cita.patient.id === patientId);
+    return cita ? cita.patient : null;
+  }
+  
 // Función para obtener las citas de la base de datos
 function getCitasFromDatabase() {
   const data = fs.readFileSync('db.json', 'utf8');
