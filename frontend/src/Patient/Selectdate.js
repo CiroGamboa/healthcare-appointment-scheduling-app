@@ -57,8 +57,8 @@ const Selectdate = (props) => {
             <Col> */}
             <div className="row justify-content-center mt-5 ml-5">
               <div className="col-2">
-                <Link to="/patient/searchdoctor">
-                  <Button color="danger">GO BACK</Button>
+                <Link to="/patient">
+                  <Button color="danger">Volver</Button>
                 </Link>
               </div>
               {/* </Col>
@@ -69,11 +69,11 @@ const Selectdate = (props) => {
                     pathname: "/patient/book-slot",
                     state: {
                       date: date,
-                      doctor: props.location.doctor.doctor,
+                      doctor: "Especialista CAC UPB",
                     },
                   }}
                 >
-                  <Button color="primary">Confirm And Go to Next Step</Button>
+                  <Button color="primary">Confirmar e ir al siguiente paso</Button>
                 </Link>
               </div>
               {/* </Col>

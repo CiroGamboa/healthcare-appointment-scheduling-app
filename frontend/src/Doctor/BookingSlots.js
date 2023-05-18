@@ -2,28 +2,29 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../Basic/Navbar";
 import LeftsidePatient from "../Dashbaord/LeftsidePatient";
+import ReservationLink from "./ReservationLink"
 
 import Axios from "axios";
+
 
 const BookingSlots = (props) => {
   // console.log(props.location.state)
   const { date, doctor } = props.location.state;
-  // console.log("Date: " + date + " DoctorId: " + doctorId);
-  const [dateId, setdateId] = useState();
+  console.log("Date: " + date + " DoctorId: " + doctor);
+  const [slotId, setdateId] = useState();
   const [Slots, setSlots] = useState([]);
 
   useEffect(() => {
     const fetchDate = async (dateToPost) => {
       const { data } = await Axios.post(
-        `${process.env.REACT_APP_SERVER_URL}/doctors/get-slots/`,
+        `http://localhost:5000/slots/`,
         {
-          doctorId: doctor._id,
-          date: dateToPost
-        }
+           date: dateToPost
+         }
       );
       console.log(data);
       setdateId(data._id);
-      setSlots(data.slots);
+      setSlots(data);
     };
 
     function getDateString() {
@@ -72,34 +73,24 @@ const BookingSlots = (props) => {
               <thead>
                 <tr>
                   <th scope="col">Slot</th>
-                  <th scope="col">Booking Status</th>
+                  <th scope="col">Estado de la reserva</th>
                 </tr>
               </thead>
               <tbody>
-                {Slots.map((slot) => (
-                  <tr key={slot._id}>
-                    <th scope="row">{slot.time}</th>
-                    {slot.isBooked ? (
-                      <td>Booked</td>
-                    ) : (
-                      <td>
-                        <Link
-                          to={{
-                            pathname: "/patient/payment",
-                            data: {
-                              dateId:dateId,
-                              doctor:doctor,
-                              slotId:slot._id,
-                            },
-                          }}
-                        >
-                          Book Now
-                        </Link>
-                      </td>
-                    )}
-                  </tr>
-                ))}
-              </tbody>
+              {Slots.map((slot) => (
+                <tr key={slot.id}>
+                  <th scope="row">{slot.time}</th>
+                  {slot.isBooked ? (
+                    <td>Reservado</td>
+                  ) : (
+                    <td>
+                      <ReservationLink slotId={slot.id} />
+                    </td>
+                  )}
+                </tr>
+              ))}
+            </tbody>
+
             </table>
           </div>
         </div>

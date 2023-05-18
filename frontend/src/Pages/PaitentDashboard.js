@@ -11,28 +11,28 @@ const PersonalDetails = () => {
   const [loading, setLoading] = useState(true);
   const { googleId } = useContext(AuthContext);
 
-  useEffect(() => {
-    setLoading(true);
-    const getPatientDetails = async () => {
-      const res = await Axios.get(
-        `${process.env.REACT_APP_SERVER_URL}/patients/getPatientDetails/${googleId}`
-      );
-      if (res.status === 200) {
-        setPatient(res.data);
-        window.localStorage.setItem("user", JSON.stringify(res.data));
-        setLoading(false);
-      } else {
-        console.log(res.data.message);
-        setLoading(false);
-      }
-    };
-    getPatientDetails();
-  }, [googleId]);
+  // useEffect(() => {
+  //   setLoading(true);
+  //   const getPatientDetails = async () => {
+  //     const res = await Axios.get(
+  //       `${process.env.REACT_APP_SERVER_URL}/patients/getPatientDetails/${googleId}`
+  //     );
+  //     if (res.status === 200) {
+  //       setPatient(res.data);
+  //       window.localStorage.setItem("user", JSON.stringify(res.data));
+  //       setLoading(false);
+  //     } else {
+  //       console.log(res.data.message);
+  //       setLoading(false);
+  //     }
+  //   };
+  //   getPatientDetails();
+  // }, [googleId]);
 
   return (
     <div className="bg-dark" style={{ height: "100vh" }}>
       <Navbar />
-      {loading ? (
+      {/* {loading ? (
         <div className="row justify-content-center position-relative">
           <div
             className="spinner-border align-middle d-flex justify-content-center position-absolute top-50 start-50 translate-middle"
@@ -40,7 +40,7 @@ const PersonalDetails = () => {
             role="status"
           ></div>
         </div>
-      ) : (
+      ) : ( */}
         <div>
           <div className="row m-5" style={{ maxWidth: "100%" }}>
             <div
@@ -60,43 +60,40 @@ const PersonalDetails = () => {
               <div className="row ">
                 <div className="col-9 col-md-9 p-4">
                   <div className="card mb-4">
-                    <h4 className="card-header">Personal Details</h4>
+                    <h4 className="card-header">Datos Personales</h4>
                     <ul className="list-group">
                       <li className="list-group-item">
                         <span className="badge badge-success mr-2 p-2">
-                          Name:
+                          Nombre:
                         </span>
                         {patient.name}
                       </li>
                       <li className="list-group-item">
                         <span className="badge badge-success mr-2 p-2">
-                          Email:
+                          Identificación:
                         </span>
                         {patient.email}
                       </li>
                       <li className="list-group-item">
                         <span className="badge badge-success mr-2 p-2">
-                          Phone No:
+                          Edad:
                         </span>
                         {patient.phoneNumber}
                       </li>
+                      <li className="list-group-item">
+                        <span className="badge badge-success mr-2 p-2">
+                          Tipo de Cliente:
+                        </span>
+                        {patient.email}
+                      </li>
                     </ul>
                   </div>
-                </div>
-                <div className="col-3 col-md-3 p-4 ">
-                  <img
-                    src={patient.picture}
-                    // className="rounded-circle"
-
-                    style={{ width: "100%" }}
-                    alt=""
-                  />
                 </div>
               </div>
             </div>
           </div>
         </div>
-      )}
+      {/* )} */}
     </div>
   );
 };

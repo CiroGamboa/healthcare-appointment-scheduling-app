@@ -90,7 +90,7 @@ const Navbar = () => {
           height="24"
           className="d-inline-block align-top mr-2 mt-1"
         ></img>
-        Hospital Management System
+        Centro de Atención al Cliente CAC-UPB
       </Link>
       <button
         className="navbar-toggler"
@@ -106,10 +106,10 @@ const Navbar = () => {
             <link to="/" className="nav-link " style={{ padding: 0 }} />
             {!token && (
               <button
-                onClick={loginWithGoogle}
+                onClick={()=>history.push("/patient")}
                 className="btn btn-outline-primary"
               >
-                Login As A Patient
+                Pedir cita
               </button>
             )}
             {token && (

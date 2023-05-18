@@ -9,23 +9,23 @@ const LeftsidePatient = () => {
       <ul>
         <li>
           <Link to="/patient">
-            <Option Value="Personal Details" />
+            <Option Value="Datos Personales" />
           </Link>
         </li>
         <li>
-          <Link to="/patient/searchdoctor">
-            <Option Value="Search Doctor" />
+          <Link to="/patient/selectdate">
+            <Option Value="Agendar Cita" />
           </Link>
         </li>
         <li>
           <Link to="/patient/appointment-status">
-            <Option Value="Appointment Status" />
+            <Option Value="Estado de la Cita" />
           </Link>
         </li>
 
         <li>
           <Link to="/patient/previousappointments">
-            <Option Value="Previous Appointments" />
+            <Option Value="Citas Previas" />
           </Link>
         </li>
 
