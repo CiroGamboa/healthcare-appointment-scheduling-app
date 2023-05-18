@@ -7,29 +7,21 @@ const LeftsidePatient = () => {
   return (
     <div>
       <ul>
-        <li>
-          <Link to="/patient">
-            <Option Value="Datos Personales" />
-          </Link>
-        </li>
-        <li>
-          <Link to="/patient/selectdate">
-            <Option Value="Agendar Cita" />
+        <li onClick={localStorage.setItem("premium",false)}>
+          <Link to="/patient/info">
+            <Option Value="Agendar Cita"/>
           </Link>
         </li>
         <li>
           <Link to="/patient/appointment-status">
-            <Option Value="Estado de la Cita" />
+            <Option Value="Solicitar Ticket" />
           </Link>
-        </li>
-
+        </li>  
         <li>
-          <Link to="/patient/previousappointments">
-            <Option Value="Citas Previas" />
+          <Link to="/admin">
+            <Option Value="Admin Panel" />
           </Link>
-        </li>
-
-       
+        </li>         
       </ul>
     </div>
   );

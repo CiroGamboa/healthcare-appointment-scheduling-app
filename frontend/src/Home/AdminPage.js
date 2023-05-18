@@ -6,8 +6,9 @@ import Navbar from "../Basic/Navbar";
 import "../Dashbaord/dashboard.css";
 import Leftside from "../Dashbaord/LeftsidePatient";
 import Search from "../Doctor/Search";
+import Admin from "./Admin";
 
-const AppointmentStatus = () => {
+const AdminPage = () => {
     const [appointments, setAppointments] = useState([]);
     const [isLoading, setIsLoading] = useState()
     const [filteredAppointments, setFilteredAppointments] = useState()
@@ -82,7 +83,7 @@ const AppointmentStatus = () => {
                             backgroundColor: "#6c757d",
                         }}
                     >
-                        <Search />
+                        <Admin />
                     
                     </div> }
                 </div>
@@ -91,4 +92,4 @@ const AppointmentStatus = () => {
     );
 };
 
-export default AppointmentStatus;
+export default AdminPage;

@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom"; 
 import "bootstrap/dist/css/bootstrap.min.css";
 import logo from "../image/navbaricon1.png";
 import { AuthContext } from "../Auth/AuthContext";
@@ -106,7 +106,7 @@ const Navbar = () => {
             <link to="/" className="nav-link " style={{ padding: 0 }} />
             {!token && (
               <button
-                onClick={()=>history.push("/patient")}
+                onClick={()=>history.push("/patient/info")}
                 className="btn btn-outline-primary"
               >
                 Pedir cita

@@ -24,6 +24,8 @@ import DocAppointments from "./Doctor/PaymentHistory";
 import AppointmentStatus from "./Patient/AppointmentStatus";
 import Pfeedback from './Patient/Feedback';
 import FeedbackDetails from './Doctor/FeedbackDetails';
+import Admin from "./Home/Admin";
+import AdminPage from "./Home/AdminPage";
 
 function App() {
 	const [token, setToken] = useState(window.localStorage.getItem("token"));
@@ -77,11 +79,13 @@ function App() {
 		<Router>
 			<AuthContext.Provider value={{ token, setToken, googleId, setGoogleId }}>
 				<Switch>
+					<Route exact path="/admin" component={AdminPage} />
 					<Route exact path="/" component={Home} />
+					<Route exact path="/patient" component={Home} />
 					<Route exact path="/doctorlogin" component={DoctorLogin} />
 					<Route exact path="/doctor" component={DoctorDashboard} />
 					<Route exact path="/patient/searchdoctor" component={SearchDoctor} />
-					<Route exact path="/patient" component={PaitentDashboard} />
+					<Route exact path="/patient/info" component={PaitentDashboard} />
 					<Route exact path="/patient/update-phone" component={PhoneNumber} />
 					<Route
 						exact

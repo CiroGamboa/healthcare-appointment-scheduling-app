@@ -9,6 +9,7 @@ import Calendar from "react-calendar";
 const Selectdate = (props) => {
   const [date, setDate] = useState(new Date());
 
+  const patient = JSON.parse(localStorage.getItem("patient"));
   const onChange = (date) => {
     setDate(date);
   };
@@ -57,7 +58,7 @@ const Selectdate = (props) => {
             <Col> */}
             <div className="row justify-content-center mt-5 ml-5">
               <div className="col-2">
-                <Link to="/patient">
+                <Link to="/patient/info">
                   <Button color="danger">Volver</Button>
                 </Link>
               </div>
@@ -70,6 +71,7 @@ const Selectdate = (props) => {
                     state: {
                       date: date,
                       doctor: "Especialista CAC UPB",
+                      patient: patient,
                     },
                   }}
                 >

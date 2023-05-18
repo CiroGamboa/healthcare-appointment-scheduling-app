@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useMemo } from "react";
 import Axios from "axios";
-import Scrollbar from "react-scrollbars-custom";
-// import { ListGroup, ListGroupItem } from "reactstrap";
 
 import {
   Row,
@@ -13,7 +11,7 @@ import {
 } from "reactstrap";
 
 
-const Search = () => {
+const Admin = () => {
   const [text, setText] = useState('Escriba su ID');
   const [patientId, setPatientId] = useState('');
   const [appointments, setAppointments] = useState([]);
@@ -23,42 +21,21 @@ const Search = () => {
   }, []);
 
   const fetchAppointments = async () => {
-    try {
-      const response = await Axios.get(`http://localhost:5000/patient-appointments/${patientId}`);
-      setAppointments(response.data);
-    } catch (error) {
+    Axios.get('http://localhost:5000/citas')
+    .then(response => {
+      const citas = response.data;
+      setAppointments(citas);
+      console.log(citas);
+    })
+    .catch(error => {
       console.error(error);
-    }
+    });
   };
 
   return (
     <div>
-      <Row className="mb-3">
-        <Col>
-          <InputGroup>
-            <Input
-              type="text"
-              placeholder="Ingrese su número de identificación"
-              onChange={e => {setPatientId(e.target.value)}}
-              className="mb-1"
-            />
-            <div style={{ height: 10 }} className="">
-              <InputGroupAddon addonType="append">
-                <Button
-                  className="h-10 d-inline-block"
-                  color="primary"
-                  onClick={() => fetchAppointments()}
-                >
-                  Buscar cita 
-                </Button>
-              </InputGroupAddon>
-            </div>
-          </InputGroup>
-        </Col>
-      </Row>
-
         <div>
-        <h2>Citas Agendadas</h2>
+        <h2>Todas las Citas Agendadas</h2>
         <table className="table table-hover table-dark">
           <thead>
               <tr>
@@ -90,4 +67,4 @@ const Search = () => {
   );
 };
 
-export default Search;
+export default Admin;

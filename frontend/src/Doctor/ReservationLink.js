@@ -1,10 +1,12 @@
 import React from "react";
 import Axios from "axios";
 
-const ReservationLink = ({ slotId }) => {
+const ReservationLink = ({slotId}) => {
   const reserveSlot = async (slotId) => {
     try {
-      const response = await Axios.post('http://localhost:5000/reserve-slot', { slotId });
+      const patient = JSON.parse(localStorage.getItem("patient"));
+      console.log(patient);
+      const response = await Axios.post('http://localhost:5000/reserve-slot', { slotId, patient});
   
       if (response.status === 200) {
         console.log(response.data.message); // Mensaje de éxito

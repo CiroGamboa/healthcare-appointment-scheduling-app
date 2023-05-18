@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import Navbar from "../Basic/Navbar";
 import LeftsidePatient from "../Dashbaord/LeftsidePatient";
 import ReservationLink from "./ReservationLink"
+import { Button } from "reactstrap";
+
 
 import Axios from "axios";
 
@@ -10,15 +12,18 @@ import Axios from "axios";
 const BookingSlots = (props) => {
   // console.log(props.location.state)
   const { date, doctor } = props.location.state;
-  console.log("Date: " + date + " DoctorId: " + doctor);
+  console.log("Date: " + date + " DoctorId: " + doctor); 
   const [slotId, setdateId] = useState();
   const [Slots, setSlots] = useState([]);
+  const patient =JSON.parse(localStorage.getItem("patient"));
+
 
   useEffect(() => {
     const fetchDate = async (dateToPost) => {
       const { data } = await Axios.post(
         `http://localhost:5000/slots/`,
         {
+            
            date: dateToPost
          }
       );
@@ -84,12 +89,19 @@ const BookingSlots = (props) => {
                     <td>Reservado</td>
                   ) : (
                     <td>
-                      <ReservationLink slotId={slot.id} />
+                      <ReservationLink slotId={slot.id}/>
                     </td>
                   )}
                 </tr>
               ))}
             </tbody>
+            <div className="justify-content-center">
+              <div className="col-2">
+                <Link to="/patient/selectdate">
+                  <Button color="danger">Volver</Button>
+                </Link>
+              </div>
+            </div>
 
             </table>
           </div>
