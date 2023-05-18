@@ -48,18 +48,17 @@ const Admin = () => {
               </tr>
           </thead>
           <tbody>
-          {appointments.map(appointment => (
-              <div key={appointment.slotId}>
-                <th scope="row">{appointment.date}</th>
-                <th scope="row">{appointment.time}</th>
-                <th scope="row">{appointment.patientName}</th>
-                <th scope="row">{appointment.patientAge}</th>
-                <th scope="row">{appointment.patientId}</th>
-                <th scope="row">{appointment.patientType}</th>
-                <hr />
-              </div>
+            {appointments.map(appointment => (
+                <tr key={appointment.id}>
+                <td>{appointment.fecha}</td>
+                <td>{appointment.hora}</td>
+                <td>{appointment.nombre}</td>
+                <td>{appointment.edad}</td>
+                <td>{appointment.id}</td>
+                <td>{appointment.tipoPaciente}</td>
+                </tr>
             ))}
-          </tbody>
+            </tbody>
       </table>
 
       </div>

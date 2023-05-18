@@ -50,20 +50,28 @@ app.get('/citas', (req, res) => {
 
   const citasConInformacion = citas.map(cita => {
     const slot = getSlotById(cita.slotId);
-    const paciente = getPatientById(cita.patientId);
+    const paciente = getPatientById(cita.patient && cita.patient.id); // Verificar si el paciente existe
 
-    return {
-      fecha: slot.date,
-      hora: slot.time,
-      nombre: paciente.name,
-      edad: paciente.age,
-      id: paciente.id,
-      tipoPaciente: paciente.type
-    };
+    if (paciente) {
+      return {
+        fecha: slot.date,
+        hora: slot.time,
+        nombre: paciente.name,
+        edad: paciente.age,
+        id: paciente.id,
+        tipoPaciente: paciente.type
+      };
+    } else {
+      return null; // Opcionalmente, puedes manejar el caso en el que no haya paciente asignado a la cita
+    }
   });
 
-  res.json(citasConInformacion);
+  // Filtrar las citas que son null
+  const citasValidas = citasConInformacion.filter(cita => cita !== null);
+
+  res.json(citasValidas);
 });
+
 
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
