@@ -72,6 +72,38 @@ app.get('/citas', (req, res) => {
   res.json(citasValidas);
 });
 
+// ...
+
+// Endpoint para obtener las citas de un paciente por su ID
+app.get('/patient-appointments/:patientId', (req, res) => {
+  console.log("Received");
+  const { patientId } = req.params;
+  console.log("ID");
+  console.log(patientId);
+  const citas = getCitasFromDatabase().filter(cita => cita.patient.id == patientId);
+  console.log(getCitasFromDatabase())
+
+  const citasConInformacion = citas.map(cita => {
+    const slot = getSlotById(cita.slotId);
+    const paciente = getPatientById(cita.patient.id);
+
+    return {
+      date: slot.date,
+      time: slot.time,
+      patientName: paciente.name,
+      patientAge: paciente.age,
+      patientId: paciente.id,
+      patientType: paciente.type
+    };
+  });
+
+  console.log(citasConInformacion);
+
+  res.json(citasConInformacion);
+});
+
+// ...
+
 
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
